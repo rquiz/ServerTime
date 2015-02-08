@@ -31,11 +31,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Add statusBarItem
         statusBarItem = statusBar.statusItemWithLength(-1)
         statusBarItem.menu = menu
-        statusBarItem.title = "Local"
         
         // Current Time
         let tyme = timeString()
         var displayTyme = String(tyme)
+        
+        // Set MenuBar Time
         statusBarItem.title = displayTyme
     }
     
