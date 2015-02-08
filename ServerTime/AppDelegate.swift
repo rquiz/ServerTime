@@ -26,22 +26,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var seconds = components.second
         return "\(hour):\(minutes):\(seconds)"
     }
-   
+    
+    func updateTime() {
+        statusBarItem.title = timeString()
+    }
+    
+    func beginTimers() {
+        var timer = NSTimer()
+        let aSelector : Selector = "updateTime"
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+    }
+    
     override func awakeFromNib() {
         // Add statusBarItem
         statusBarItem = statusBar.statusItemWithLength(-1)
         statusBarItem.menu = menu
-        
-        // Current Time
-        let tyme = timeString()
-        var displayTyme = String(tyme)
-        
-        // Set MenuBar Time
-        statusBarItem.title = displayTyme
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        beginTimers()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
